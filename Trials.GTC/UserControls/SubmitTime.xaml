@@ -1,0 +1,92 @@
+﻿<controls:ChildWindow x:Class="Trials.GTC.UserControls.SubmitTime"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"    
+    xmlns:uc="clr-namespace:Trials.GTC.UserControls"
+    xmlns:validators="clr-namespace:Appbyfex.Validators"
+    xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+    Style="{StaticResource DialogWindowStyle}">
+
+    <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5">
+        <Border CornerRadius="5" Padding="5" Background="{StaticResource DialogBackgroundBrush}">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="4" Direction="-45" Color="Black"  Opacity="0.5"/>
+            </Border.Effect>
+        </Border>
+        <StackPanel>
+
+            <Image Source="/Trials.GTC;component/Images/submit_time.png" HorizontalAlignment="Left" Margin="10,5,0,0"
+                           Stretch="None"/>
+
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Style="{StaticResource SubtitleStyle}" Margin="4">USE THE FIELDS BELOW:</TextBlock>
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">RIDER:</TextBlock>
+                        <TextBox Width="200" IsReadOnly="True"
+                                  validators:ValidatorService.Validator="rider" 
+                                validators:ValidatorService.ValidatorType="Required"
+                                ToolTipService.ToolTip="Please specify the GamerTag of the rider, case-sensitive"
+                                 Text="{Binding Rider, Mode=TwoWay}" />
+
+                        <uc:Validator validators:ValidatorService.RegisterValidator="rider" 
+                                      ToolTipService.ToolTip="The GamerTag is required"
+                                      Width="20" Height="20"/>
+                        
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">TIME:</TextBlock>
+                        <TextBox Width="200" Text="{Binding Time, Mode=TwoWay}" 
+                                 x:Name="tbTime"
+                                validators:ValidatorService.Validator="time" 
+                                validators:ValidatorService.ValidatorType="Custom" 
+                                 />
+
+                        <uc:Validator validators:ValidatorService.RegisterValidator="time" 
+                                      ToolTipService.ToolTip="Please specify a valid time. E.g. 00:12:58.123"
+                                      Width="20" Height="20"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">FAULTS:</TextBlock>
+                        <TextBox Width="200" Text="{Binding Faults, Mode=TwoWay}" 
+                            validators:ValidatorService.Validator="faults" 
+                            validators:ValidatorService.ValidatorType="RegularExpression" 
+                            validators:ValidatorService.ValidatorParameter="^(\d+)$" 
+                            ToolTipService.ToolTip="Please specify the number of faults"
+                                 
+
+                        />
+
+                        <uc:Validator validators:ValidatorService.RegisterValidator="faults" 
+                                      ToolTipService.ToolTip="The number of faults are required"
+                                      Width="20" Height="20"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">LINK:</TextBlock>
+                        <TextBox Width="200" Text="{Binding Link, Mode=TwoWay}" />
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                  
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,5,5">
+                <Button Margin="4" Height="35" Width="100" Command="{Binding SearchCommand}" Click="Button_Click_1">Submit</Button>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+
+</controls:ChildWindow>

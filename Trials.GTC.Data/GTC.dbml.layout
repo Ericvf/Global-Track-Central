@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 11" name="GTC">
+  <DataContextMoniker Name="/GTCDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3001cdba-7957-4afe-940f-66bdfc67d006" absoluteBounds="1.375, 2.875, 2, 1.3862939453125">
+      <DataClassMoniker Name="/GTCDataContext/TrackTag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a3aec058-3db6-49f8-b9f8-88ece034f61d" absoluteBounds="1.3900000000000001, 3.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e9c9e380-adee-4466-8cce-a68eec47db48" absoluteBounds="4, 0.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/GTCDataContext/Time" />
+      <nestedChildShapes>
+        <elementListCompartment Id="109d2d71-ae31-4e96-bcf7-bdf82048f039" absoluteBounds="4.015, 1.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6969cbed-8829-488f-9039-fa74916e5dea" absoluteBounds="0.875, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/GTCDataContext/Tag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a1198189-14e3-4af5-be33-24d1f4b13f09" absoluteBounds="0.89000000000000012, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.125 : 2.1362939453125); (2.125 : 2.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/GTCDataContext/Tag/Tag_TrackTag" />
+      <nodes>
+        <classShapeMoniker Id="6969cbed-8829-488f-9039-fa74916e5dea" />
+        <classShapeMoniker Id="3001cdba-7957-4afe-940f-66bdfc67d006" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="508dff68-f708-406c-a948-8576d458664d" absoluteBounds="1.625, 6.25, 2, 4.4631168619791666">
+      <DataClassMoniker Name="/GTCDataContext/Track" />
+      <nestedChildShapes>
+        <elementListCompartment Id="567b5830-c2e4-40b8-881c-2e663860e255" absoluteBounds="1.6399999999999997, 6.71, 1.9700000000000002, 3.9031168619791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 6.25); (2.5 : 4.2612939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/GTCDataContext/Track/Track_TrackTag" />
+      <nodes>
+        <classShapeMoniker Id="508dff68-f708-406c-a948-8576d458664d" />
+        <classShapeMoniker Id="3001cdba-7957-4afe-940f-66bdfc67d006" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b6bd3939-2b96-4adf-b58a-b17657fe7602" absoluteBounds="5.375, 3.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/GTCDataContext/aspnet_User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="36dfc843-4cdc-4936-a7b8-20477d476db9" absoluteBounds="5.39, 4.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.375 : 5.17714680989583); (3.53125 : 5.17714680989583); (3.53125 : 6.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/GTCDataContext/aspnet_User/aspnet_User_Track" />
+      <nodes>
+        <classShapeMoniker Id="b6bd3939-2b96-4adf-b58a-b17657fe7602" />
+        <classShapeMoniker Id="508dff68-f708-406c-a948-8576d458664d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="13fe5c10-3fd2-4b8c-b73d-f6fafd2b5996" absoluteBounds="8, 0.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/GTCDataContext/Message" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8251fa81-4af5-4c3a-b5ff-90c159585c7f" absoluteBounds="8.015, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

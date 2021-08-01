@@ -1,0 +1,129 @@
+﻿@using Trials.GTC.Mobile.Extensions
+@model Trials.GTC.Website.TrackCentral.TracksResults
+
+@{
+    ViewBag.Title = "Tracks";
+
+    var page = Request.Params["page"] != null ? Convert.ToInt32(Request.Params["page"]) : 1;
+    string controller = this.ViewContext.RouteData.Values["controller"].ToString();
+    string action = this.ViewContext.RouteData.Values["action"].ToString();
+}
+
+@if (Model != null)
+{
+    <div class="grid">
+        <div class="col">
+            <div class="head">
+                <span>DISPLAYING PAGE @page OF @Model.TotalPages (@Model.TotalItems ITEMS)</span>
+            </div>
+
+              @* <div class="pagesearch">
+                @using (Html.BeginForm(action, controller, Request.QueryString.ToRouteValues()))
+                {
+                    <div class="search">@Html.TextBox("keyword", null, new { @placeholder = "Search" })</div>
+                }
+            </div>*@
+            
+            <table>
+                <thead>
+                    <tr>
+                        <td>TITLE</td>
+                        <td>CREATOR</td>
+                        <td>ADDED</td>
+                        <td>DIFFICULTY</td>
+                        <td>TYPE</td>
+                        <td>VERSION</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Tracks)
+                    {
+                        <tr>
+                            <td><span class="title">@Html.ActionLink(item.Name, "Index", "Track", new { Id = item.LinkId }, null)</span>                                                                     </td>
+                            <td><span class="creator">@Html.ActionLink(item.Creator, "Index", "Tracks", new { creator = item.Creator }, null)</span>                                                         </td>
+                            <td><span class="date">@item.Created.ToShortDateString()</span>                                                                                                                  </td>
+                            <td><span class="diff">@Html.ActionLink(item.Difficulty.ToDifficulty(), "Index", "Tracks", Request.QueryString.ToRouteValues(new { d = item.Difficulty }), null)</span>          </td>
+                            <td><span class="type">@Html.ActionLink(item.TrialsType.ToTrialsType(), "Index", "Tracks", Request.QueryString.ToRouteValues(new { t = item.TrialsType }), null)</span>           </td>
+                            <td><span class="vers">@Html.ActionLink(item.TrialsVersion.ToTrialsVersion(), "Index", "Tracks", Request.QueryString.ToRouteValues(new { v = item.TrialsVersion }), null)</span>  </td>
+
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Hyperlink))
+                                { 
+                                    <span class="yt"><a href="@item.Hyperlink" target="_blank">
+                                        <img src="@Url.Content("~/Content/youtube_small.png")" alt="Watch video"/></a></span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        <div class="buttons">
+
+            @if (Model.TotalPages > 1)
+            {
+                var start = Math.Max(1, page - 2);
+                var end = Math.Min(Model.TotalPages + 1, page + 2);
+                
+                <ul class="pager">
+                    @if (page > 1)
+                    {
+                        var prev = Url.Action(action, controller, new
+                        {
+                            page = page - 1,
+                            creator = Request.Params["creator"],
+                            trialsversion = Request.Params["trialsversion"],
+                        }, null);
+
+                        var first = Url.Action(action, controller, new
+                        {
+                            page = 1,
+                            creator = Request.Params["creator"],
+                            trialsversion = Request.Params["trialsversion"],
+                        }, null);
+                    
+                        @*<a class="btn act" href="@first">&lt;&lt;</a>*@
+                        <a class="btn act mid" href="@prev">Previous</a>
+                    }
+                
+                  @for (int i = start; i <= end; i++)
+                    {                    
+                        <li>@Html.ActionLink(i.ToString(), "Index", "Tracks",
+                            new
+                            {
+                                page = i.ToString(),
+                                creator = Request.Params["creator"],
+                                trialsversion = Request.Params["trialsversion"],
+                            }, new { @class="btn " + ((page == i)?"pri":"sec")})</li>
+                    }
+
+                    @if (page < Model.TotalPages)
+                    {
+                        var next = Url.Action(action, controller, new
+                        {
+                            page = page + 1,
+                            creator = Request.Params["creator"],
+                            trialsversion = Request.Params["trialsversion"],
+                        }, null);
+
+                        var last = Url.Action(action, controller, new
+                        {
+                            page = this.Model.TotalPages,
+                            creator = Request.Params["creator"],
+                            trialsversion = Request.Params["trialsversion"],
+                        }, null);
+
+                    
+                        <a class="btn act mid" href="@next">Next</a>
+                        @*<a class="btn sec" href="@last">&gt;&gt;</a>*@
+                    }
+                </ul>
+            }
+         
+        </div>
+
+
+        </div>
+    </div>
+}

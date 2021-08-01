@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <customBinding>
+                <binding name="CustomBinding_TrackCentral">
+                    <binaryMessageEncoding />
+                    <httpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
+                </binding>
+            </customBinding>
+        </bindings>
+        <client>
+            <endpoint address="../Services/TrackCentral.svc" binding="customBinding"
+                bindingConfiguration="CustomBinding_TrackCentral" contract="GlobalTrackCentral.TrackCentral"
+                name="CustomBinding_TrackCentral" />
+        </client>
+    </system.serviceModel>
+</configuration>

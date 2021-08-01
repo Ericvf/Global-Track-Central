@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Trials.GTC.Web.Services.TrackCentral" CodeBehind="TrackCentral.svc.cs" %>

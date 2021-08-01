@@ -1,0 +1,176 @@
+﻿<navigation:Page x:Class="Trials.GTC.Views.Event"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+             
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot">
+        <StackPanel Margin="10,0,10,0" >
+            <Grid Margin="10,0,0,0" x:Name="TitleText" IsHitTestVisible="False">
+                <TextBlock Text="{Binding Title}" Style="{StaticResource TitleStyle}" FontSize="48" Foreground="Black" Margin="2,2,0,0"></TextBlock>
+                <TextBlock Text="{Binding Title}" Style="{StaticResource TitleStyle}" FontSize="48" Foreground="White" Margin="0,0,0,0"></TextBlock>
+            </Grid>
+
+            <StackPanel x:Name="ContentPanel" Margin="10,0,10,10">
+                <StackPanel  Visibility="{Binding IsLoading, Converter={StaticResource VisibilityConverter}}">
+                    <!--<TextBlock Style="{StaticResource TitleStyle}" FontSize="48" Foreground="Black"
+                    Margin="20,20,20,0" HorizontalAlignment="Center">LOADING TRACKS</TextBlock>-->
+
+                    <Image Source="/Trials.GTC;component/Images/loading_tracks.png" Stretch="None" Margin="0,34,0,0" />
+
+                    <TextBlock Style="{StaticResource TitleStyle}"  Foreground="Black"
+                    Margin="5" HorizontalAlignment="Center"
+                      >WAIT FOR THE SQUIRREL</TextBlock>
+
+                </StackPanel>
+
+                <StackPanel Visibility="{Binding IsLoading, Converter={StaticResource InVisibilityConverter}}" >
+                    <TextBlock Style="{StaticResource TitleStyle}" Text="TRACKS IN THIS EVENT" Foreground="Black"/>
+                               
+                    <!--Grid-->
+                    <sdk:DataGrid x:Name="dataGrid" Grid.Row="1" ItemsSource="{Binding Tracks}" Visibility="{Binding HasItems, Converter={StaticResource VisibilityConverter}}" FontSize="14"
+                      AutoGenerateColumns="False" IsReadOnly="True" CanUserSortColumns="False" CanUserReorderColumns="False" CurrentCellChanged="DataGrid_CurrentCellChanged" Margin="5,0,5,0">
+
+                        <sdk:DataGrid.Columns>
+                            <!--ID-->
+                            <sdk:DataGridTextColumn MinWidth="0" MaxWidth="0" Binding="{Binding Id}" />
+
+                            <!--Rating-->
+                            <sdk:DataGridTemplateColumn Header="Rating" Width="56" CanUserResize="False" SortMemberPath="Rating"
+                                                HeaderStyle="{StaticResource DataGridSortHeaderStyle}">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ProgressBar Minimum="0" Maximum="5" Height="10" Style="{StaticResource ProgressBarStyle1}" Value="{Binding Rating}" Margin="3" Foreground="{StaticResource DarkAnnotationBrush}" Background="White" >
+                                            <ToolTipService.ToolTip>
+                                                <TextBlock>
+                                            <Run>Rated</Run>
+                                            <Run Text="{Binding Rating}" />
+                                            <Run>out of 5</Run>
+                                                </TextBlock>
+                                            </ToolTipService.ToolTip>
+                                        </ProgressBar>
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+
+                            <!--Name-->
+                            <sdk:DataGridTemplateColumn Header="Name" SortMemberPath="Name" MinWidth="200" HeaderStyle="{StaticResource DataGridSortHeaderStyle}">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <HyperlinkButton Style="{StaticResource HyperlinkStyle}" Foreground="Black" Content="{Binding Name}" 
+                                            Click="TrackItem_Click" Tag="{Binding LinkId}"
+                                            CommandParameter="{Binding}" />
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+
+                            <!--Creator-->
+                            <sdk:DataGridTemplateColumn Header="Creator" SortMemberPath="Creator" MinWidth="100" HeaderStyle="{StaticResource DataGridSortHeaderStyle}">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <HyperlinkButton Style="{StaticResource HyperlinkStyle}" Foreground="Black" Content="{Binding Creator}" />
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+
+                            <!--Created-->
+                            <sdk:DataGridTextColumn Header="Created" Width="150" Binding="{Binding Created, Converter={StaticResource DateTimeConverter}}"
+                                            HeaderStyle="{StaticResource DataGridSortHeaderStyle}" />
+
+                            <!--Difficulty-->
+                            <sdk:DataGridTextColumn Header="Difficulty" MinWidth="80"  Binding="{Binding Difficulty, Converter={StaticResource DifficultyConverter}}"
+                                            HeaderStyle="{StaticResource DataGridSortHeaderStyle}" />
+
+                            <!--Trials Type-->
+                            <sdk:DataGridTextColumn Header="Type" MinWidth="80"  Binding="{Binding TrialsType, Converter={StaticResource TrialsTypeConverter}}"
+                                            HeaderStyle="{StaticResource DataGridSortHeaderStyle}" />
+
+                            <!--Version-->
+                            <sdk:DataGridTextColumn Header="Version" MinWidth="80"  Binding="{Binding TrialsVersion, Converter={StaticResource TrialsVersionConverter}}"
+                                            HeaderStyle="{StaticResource DataGridSortHeaderStyle}" />
+                        </sdk:DataGrid.Columns>
+                    </sdk:DataGrid>
+
+                    <!--NO RESULTS-->
+                    <StackPanel Visibility="{Binding HasItems, Converter={StaticResource InVisibilityConverter}}" Margin="0,0,0,0">
+                        <!--<TextBlock Style="{StaticResource TitleStyle}" FontSize="48" Foreground="Black" Margin="20,20,20,0" 
+                               HorizontalAlignment="Center">NO RESULTS TO DISPLAY</TextBlock>-->
+                        <Image Source="/Trials.GTC;component/Images/no_results.png" Stretch="None" />
+
+                        <TextBlock Style="{StaticResource TitleStyle}"  Foreground="Black" Margin="5" HorizontalAlignment="Center" Cursor="Hand"
+                        Visibility="{Binding IsFilter, Converter={StaticResource VisibilityConverter}}">NO TRACKS IN EVENT YET</TextBlock>
+                    </StackPanel>
+
+                    
+
+                </StackPanel>
+            </StackPanel>
+
+            <Grid Margin="10,0,10,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Style="{StaticResource TitleStyle}" Text="PROGRESS" Foreground="Black"/>
+                    <sdk:DataGrid  ItemsSource="{Binding Summary}" AutoGenerateColumns="False" Margin="5" IsReadOnly="True">
+
+                        <sdk:DataGrid.Columns>
+                            <sdk:DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
+                            <sdk:DataGridTextColumn Binding="{Binding Rider}" Header="Rider" Width="125"/>
+                            <sdk:DataGridTextColumn Binding="{Binding Faults}" Header="Faults"/>
+                            <sdk:DataGridTemplateColumn Header="Time" Width="75" ClipboardContentBinding="{Binding Time}">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Text="{Binding Time, Converter={StaticResource TimeSpanConverter}}"></TextBlock>
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+                            <sdk:DataGridTextColumn Binding="{Binding Points}" Header="Points"/>
+                        </sdk:DataGrid.Columns>
+                    </sdk:DataGrid>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Style="{StaticResource TitleStyle}" Text="TOP RIDERS" Foreground="Black"/>
+                    <sdk:DataGrid  ItemsSource="{Binding Riders}" AutoGenerateColumns="False" Margin="5" IsReadOnly="True">
+                        <sdk:DataGrid.Columns>
+                            <sdk:DataGridTemplateColumn  Header="Place" Width="50">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Loaded="TextBlock_Loaded"></TextBlock>
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+                            <sdk:DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="150"/>
+                            <sdk:DataGridTemplateColumn Header="Time" Width="75" ClipboardContentBinding="{Binding Time}">
+                                <sdk:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Text="{Binding Time, Converter={StaticResource TimeSpanConverter}}"></TextBlock>
+                                    </DataTemplate>
+                                </sdk:DataGridTemplateColumn.CellTemplate>
+                            </sdk:DataGridTemplateColumn>
+                            <sdk:DataGridTextColumn Binding="{Binding Points}" Header="Points"/>
+                            
+                        </sdk:DataGrid.Columns>
+                    </sdk:DataGrid>
+
+
+                    <TextBlock Style="{StaticResource TitleStyle}"  Foreground="Black"
+                    Margin="5" HorizontalAlignment="Center" TextWrapping="Wrap"
+                      >
+                        <Run>IF ZERO POINTS SHOWN,</Run><LineBreak />
+                        <Run>PROVIDE MEDAL TIMES!</Run>
+                    </TextBlock>
+
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</navigation:Page>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Trials.GTC.Data" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Trials.GTC.Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfTrack">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Track" nillable="true" type="tns:Track" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrack" nillable="true" type="tns:ArrayOfTrack" />
+  <xs:complexType name="Track">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Creator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Difficulty" type="xs:int" />
+      <xs:element minOccurs="0" name="HasThumb" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Hyperlink" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="LinkId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rating" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="ScoreCoefficient" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Submitted" type="ser:guid" />
+      <xs:element minOccurs="0" name="SubmittedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubmittedOn" type="xs:dateTime" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Tags" nillable="true" type="q1:ArrayOfguid" />
+      <xs:element minOccurs="0" name="TimeGold" nillable="true" type="ser:duration" />
+      <xs:element minOccurs="0" name="TimePlatinum" nillable="true" type="ser:duration" />
+      <xs:element minOccurs="0" name="TimeSilver" nillable="true" type="ser:duration" />
+      <xs:element minOccurs="0" name="TimeUltimate" nillable="true" type="ser:duration" />
+      <xs:element minOccurs="0" name="TrialsType" type="xs:int" />
+      <xs:element minOccurs="0" name="TrialsVersion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Track" nillable="true" type="tns:Track" />
+  <xs:complexType name="ArrayOfTag">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Tag" nillable="true" type="tns:Tag" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTag" nillable="true" type="tns:ArrayOfTag" />
+  <xs:complexType name="Tag">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsCompetition" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Tag" nillable="true" type="tns:Tag" />
+  <xs:complexType name="ArrayOfTime">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Time" nillable="true" type="tns:Time" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTime" nillable="true" type="tns:ArrayOfTime" />
+  <xs:complexType name="Time">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Faults" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Link" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LinkId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rider" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Time1" type="ser:duration" />
+      <xs:element minOccurs="0" name="TrackId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Time" nillable="true" type="tns:Time" />
+  <xs:complexType name="ArrayOfGetMessagesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GetMessagesResult" nillable="true" type="tns:GetMessagesResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGetMessagesResult" nillable="true" type="tns:ArrayOfGetMessagesResult" />
+  <xs:complexType name="GetMessagesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Body" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetMessagesResult" nillable="true" type="tns:GetMessagesResult" />
+  <xs:complexType name="ArrayOfEventSummaryResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EventSummaryResult" nillable="true" type="tns:EventSummaryResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEventSummaryResult" nillable="true" type="tns:ArrayOfEventSummaryResult" />
+  <xs:complexType name="EventSummaryResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Faults" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Points" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Rider" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Time" nillable="true" type="ser:duration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EventSummaryResult" nillable="true" type="tns:EventSummaryResult" />
+</xs:schema>

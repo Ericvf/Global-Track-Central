@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="/Imports">
+      <xsd:import schemaLocation="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd0" />
+      <xsd:import schemaLocation="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Trials.GTC.Web.Services" />
+      <xsd:import schemaLocation="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Trials.GTC.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="TrackCentral_ResetUser_InputMessage">
+    <wsdl:part name="parameters" element="ResetUser" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_ResetUser_OutputMessage">
+    <wsdl:part name="parameters" element="ResetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_RegisterUser_InputMessage">
+    <wsdl:part name="parameters" element="RegisterUser" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_RegisterUser_OutputMessage">
+    <wsdl:part name="parameters" element="RegisterUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_LoginUser_InputMessage">
+    <wsdl:part name="parameters" element="LoginUser" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_LoginUser_OutputMessage">
+    <wsdl:part name="parameters" element="LoginUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetTracks_InputMessage">
+    <wsdl:part name="parameters" element="GetTracks" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetTracks_OutputMessage">
+    <wsdl:part name="parameters" element="GetTracksResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetTrack_InputMessage">
+    <wsdl:part name="parameters" element="GetTrack" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetTrack_OutputMessage">
+    <wsdl:part name="parameters" element="GetTrackResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetTags_InputMessage">
+    <wsdl:part name="parameters" element="GetTags" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetTags_OutputMessage">
+    <wsdl:part name="parameters" element="GetTagsResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetTimes_InputMessage">
+    <wsdl:part name="parameters" element="GetTimes" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetTimes_OutputMessage">
+    <wsdl:part name="parameters" element="GetTimesResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetMessages_InputMessage">
+    <wsdl:part name="parameters" element="GetMessages" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetMessages_OutputMessage">
+    <wsdl:part name="parameters" element="GetMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetEventSummary_InputMessage">
+    <wsdl:part name="parameters" element="GetEventSummary" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_GetEventSummary_OutputMessage">
+    <wsdl:part name="parameters" element="GetEventSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_NewTrack_InputMessage">
+    <wsdl:part name="parameters" element="NewTrack" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_NewTrack_OutputMessage">
+    <wsdl:part name="parameters" element="NewTrackResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_DeleteTrack_InputMessage">
+    <wsdl:part name="parameters" element="DeleteTrack" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_DeleteTrack_OutputMessage">
+    <wsdl:part name="parameters" element="DeleteTrackResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_SubmitTime_InputMessage">
+    <wsdl:part name="parameters" element="SubmitTime" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_SubmitTime_OutputMessage">
+    <wsdl:part name="parameters" element="SubmitTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_NewMessage_InputMessage">
+    <wsdl:part name="parameters" element="NewMessage" />
+  </wsdl:message>
+  <wsdl:message name="TrackCentral_NewMessage_OutputMessage">
+    <wsdl:part name="parameters" element="NewMessageResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TrackCentral">
+    <wsdl:operation name="ResetUser">
+      <wsdl:input wsaw:Action="urn:TrackCentral/ResetUser" message="TrackCentral_ResetUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/ResetUserResponse" message="TrackCentral_ResetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input wsaw:Action="urn:TrackCentral/RegisterUser" message="TrackCentral_RegisterUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/RegisterUserResponse" message="TrackCentral_RegisterUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <wsdl:input wsaw:Action="urn:TrackCentral/LoginUser" message="TrackCentral_LoginUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/LoginUserResponse" message="TrackCentral_LoginUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTracks">
+      <wsdl:input wsaw:Action="urn:TrackCentral/GetTracks" message="TrackCentral_GetTracks_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/GetTracksResponse" message="TrackCentral_GetTracks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrack">
+      <wsdl:input wsaw:Action="urn:TrackCentral/GetTrack" message="TrackCentral_GetTrack_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/GetTrackResponse" message="TrackCentral_GetTrack_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTags">
+      <wsdl:input wsaw:Action="urn:TrackCentral/GetTags" message="TrackCentral_GetTags_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/GetTagsResponse" message="TrackCentral_GetTags_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimes">
+      <wsdl:input wsaw:Action="urn:TrackCentral/GetTimes" message="TrackCentral_GetTimes_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/GetTimesResponse" message="TrackCentral_GetTimes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessages">
+      <wsdl:input wsaw:Action="urn:TrackCentral/GetMessages" message="TrackCentral_GetMessages_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/GetMessagesResponse" message="TrackCentral_GetMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventSummary">
+      <wsdl:input wsaw:Action="urn:TrackCentral/GetEventSummary" message="TrackCentral_GetEventSummary_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/GetEventSummaryResponse" message="TrackCentral_GetEventSummary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewTrack">
+      <wsdl:input wsaw:Action="urn:TrackCentral/NewTrack" message="TrackCentral_NewTrack_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/NewTrackResponse" message="TrackCentral_NewTrack_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTrack">
+      <wsdl:input wsaw:Action="urn:TrackCentral/DeleteTrack" message="TrackCentral_DeleteTrack_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/DeleteTrackResponse" message="TrackCentral_DeleteTrack_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitTime">
+      <wsdl:input wsaw:Action="urn:TrackCentral/SubmitTime" message="TrackCentral_SubmitTime_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/SubmitTimeResponse" message="TrackCentral_SubmitTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewMessage">
+      <wsdl:input wsaw:Action="urn:TrackCentral/NewMessage" message="TrackCentral_NewMessage_InputMessage" />
+      <wsdl:output wsaw:Action="urn:TrackCentral/NewMessageResponse" message="TrackCentral_NewMessage_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,264 @@
+<controls:ChildWindow xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"  x:Class="Trials.GTC.UserControls.NewTrackWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"    
+    xmlns:validators="clr-namespace:Appbyfex.Validators"
+    xmlns:uc="clr-namespace:Trials.GTC.UserControls"
+    xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+    Style="{StaticResource DialogWindowStyle}">
+
+    <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5">
+        
+        <Border CornerRadius="5" Padding="5" Background="{StaticResource DialogBackgroundBrush}">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="4" Direction="-45" Color="Black"  Opacity="0.5"/>
+            </Border.Effect>
+        </Border>
+        <StackPanel>
+            <!--<TextBlock Style="{StaticResource TitleStyle}" Margin="10,5,0,0">SUBMIT TRACK:</TextBlock>-->
+
+            <Image Source="/Trials.GTC;component/Images/submit_track.png" HorizontalAlignment="Left" Margin="10,5,0,0"
+                           Stretch="None"/>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,15,0">
+                    <TextBlock Style="{StaticResource SubtitleStyle}" Margin="4">USE THE FIELDS BELOW:</TextBlock>
+
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">TRACK LINK ID: *</TextBlock>
+                        <TextBox Width="200" Text="{Binding LinkId, Mode=TwoWay}" x:Name="tbLinkId"
+                                 ToolTipService.ToolTip="This is an auto-generated ID that cannot be changed"/>
+                        
+                        <Image Stretch="None" Margin="2,0,2,0" ToolTipService.ToolTip="This field is auto-generated and not editable." Source="/Trials.GTC;component/Images/information.png" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">TRACK NAME:</TextBlock>
+                        <TextBox Width="200" Text="{Binding Title, Mode=TwoWay}" 
+                                validators:ValidatorService.Validator="name" 
+                                validators:ValidatorService.ValidatorType="Required"
+                                ToolTipService.ToolTip="Please specify the full name of the track, case-sensitive"
+                        />
+                        <uc:Validator validators:ValidatorService.RegisterValidator="name" 
+                                      ToolTipService.ToolTip="This is a required field"
+                                      Width="20" Height="20"/>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">RELEASE DATE:</TextBlock>
+                        <controls:DatePicker SelectedDate="{Binding Created, Mode=TwoWay}"  Width="200"/>
+                    </StackPanel>
+
+
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">TRIALS VERSION: </TextBlock>
+                        <ComboBox DisplayMemberPath="Name" Width="200" Height="24"
+                                ItemsSource="{Binding TrialsVersions}" 
+                                SelectedValue="{Binding TrialsVersion, Mode=TwoWay}"/>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">TRIALS TYPE:</TextBlock>
+                        <ComboBox DisplayMemberPath="Name" Width="200" Height="24"
+                                ItemsSource="{Binding TrialsTypes}" 
+                                SelectedValue="{Binding TrialsType, Mode=TwoWay}"/>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">DIFFICULTY:</TextBlock>
+                        <ComboBox DisplayMemberPath="Name" Width="200" Height="24"
+                                ItemsSource="{Binding Difficulties}" 
+                                SelectedValue="{Binding Difficulty, Mode=TwoWay}"/>
+                    </StackPanel>
+
+
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">DESCRIPTION:</TextBlock>
+                        <TextBox Width="200" Text="{Binding Description, Mode=TwoWay}" AcceptsReturn="True"  TextWrapping="Wrap" Height="68" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="0,0,15,0">
+                    <TextBlock Style="{StaticResource SubtitleStyle}" Margin="4">...</TextBlock>
+
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">CREATED BY: *</TextBlock>
+                        <TextBox Width="180" Text="{Binding Creator, Mode=TwoWay}" 
+                                validators:ValidatorService.Validator="creator" 
+                                validators:ValidatorService.ValidatorType="Required"
+                                ToolTipService.ToolTip="Please specify the full name of the track's creator, case-sensitive"
+                         />
+
+                        <uc:Validator validators:ValidatorService.RegisterValidator="creator" 
+                                      ToolTipService.ToolTip="This is a required field"
+                                      Width="20" Height="20"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">YOUTUBE LINK:</TextBlock>
+                        <TextBox Width="180" Text="{Binding Hyperlink, Mode=TwoWay}"
+                                 />
+                        <Image Stretch="None" Margin="2,0,2,0" MouseLeftButtonDown="Image_MouseLeftButtonDown" ToolTipService.ToolTip="Double-click this to automatically search on YouTube (requires Track name to be filled in)." Source="/Trials.GTC;component/Images/information.png" />
+
+                    </StackPanel>
+
+                    <!--<StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">
+                            <Run Text="RATING: " />
+                            <Run Text="(" /><Run Text="{Binding Rating, Converter={StaticResource NumberConverter}}" /><Run Text=")" />
+                        </TextBlock>
+                        <Slider Width="200" Minimum="1" Maximum="5" Value="{Binding Rating, Mode=TwoWay}"  />
+                    </StackPanel>-->
+
+
+                    <TextBlock Style="{StaticResource SubtitleStyle}" Margin="4,24,4,4">MEDAL TIMES</TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">ULTIMATE:</TextBlock>
+                        <TextBox Width="180" Text="{Binding TimeUltimate, Mode=TwoWay}"
+                            validators:ValidatorService.Validator="timeultimate" 
+                            validators:ValidatorService.ValidatorType="Custom" 
+                            ToolTipService.ToolTip="Please specify the ultimate time for this track"
+                            x:Name="tbTimeUltimate"
+                        />
+                        <uc:Validator validators:ValidatorService.RegisterValidator="timeultimate" 
+                                      ToolTipService.ToolTip="Please use the following format: 00:00.000"
+                                      Width="20" Height="20"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">PLATINUM:</TextBlock>
+                        <TextBox Width="180" Text="{Binding TimePlatinum, Mode=TwoWay}"
+                            validators:ValidatorService.Validator="timeplat" 
+                            validators:ValidatorService.ValidatorType="Custom" 
+                            ToolTipService.ToolTip="Please specify the ultimate time for this track"
+                            x:Name="tbTimePlatinum"
+                        />
+                        <uc:Validator validators:ValidatorService.RegisterValidator="timeplat" 
+                                      ToolTipService.ToolTip="Please use the following format: 00:00:00.000"
+                                      Width="20" Height="20"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">GOLD:</TextBlock>
+                        <TextBox Width="180" Text="{Binding TimeGold, Mode=TwoWay}"
+                            validators:ValidatorService.Validator="timegold" 
+                            validators:ValidatorService.ValidatorType="Custom" 
+                            ToolTipService.ToolTip="Please specify the ultimate time for this track"
+                            x:Name="tbTimeGold"
+                        />
+                        <uc:Validator validators:ValidatorService.RegisterValidator="timegold" 
+                                      ToolTipService.ToolTip="Please use the following format: 00:00:00.000"
+                                      Width="20" Height="20"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">SILVER:</TextBlock>
+                        <TextBox Width="180" Text="{Binding TimeSilver, Mode=TwoWay}"
+                            validators:ValidatorService.Validator="timesilver" 
+                            validators:ValidatorService.ValidatorType="Custom" 
+                            ToolTipService.ToolTip="Please specify the ultimate time for this track"
+                            x:Name="tbTimeSilver"
+                        />
+                        <uc:Validator validators:ValidatorService.RegisterValidator="timesilver" 
+                                      ToolTipService.ToolTip="Please use the following format: 00:00:00.000"
+                                      Width="20" Height="20"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <TextBlock Style="{StaticResource FormLabelStyle}">SCORECOEFFICIENT:</TextBlock>
+                        <TextBox Width="180" Text="{Binding ScoreCoefficient, Mode=TwoWay}"
+                            validators:ValidatorService.Validator="scorec" 
+                            validators:ValidatorService.ValidatorType="RegularExpression" 
+                            validators:ValidatorService.ValidatorParameter="^(\d+(\.\d+)?)?$" 
+                            ToolTipService.ToolTip="Please specify the score coefficient"
+                            
+                        />
+                        <uc:Validator validators:ValidatorService.RegisterValidator="scorec" 
+                                      ToolTipService.ToolTip="Please enter a number. E.g. 0.3"
+                                      Width="20" Height="20"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+
+                <StackPanel Grid.Column="3">
+
+                    <TextBlock  Style="{StaticResource SubtitleStyle}" Margin="4">CUSTOM TAGS:</TextBlock>
+
+                    <ListBox ItemsSource="{Binding Events}" Height="178" Margin="4" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" >
+                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding Checked, Mode=TwoWay}"></CheckBox>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  Style="{StaticResource SubtitleStyle}" Margin="4">THUMBNAIL:</TextBlock>
+                        <Image Stretch="None" Margin="2,0,2,0" ToolTipService.ToolTip="Max filesize: 300kb. If you have provided a YouTube, it will show the youtube thumbnail by default" Source="/Trials.GTC;component/Images/information.png" />
+                    </StackPanel>
+                    <Grid Margin="5" Height="75" >
+
+                        <Button Command="{Binding ThumbnailCommand}">
+                            <Grid>
+
+                                <Image Source="/Trials.GTC;component/Images/photo_scenery.png" IsHitTestVisible="False" 
+                                       Visibility="{Binding Thumbnail, Converter={StaticResource InVisibilityConverter}}" />
+
+                                <Image IsHitTestVisible="False" Source="{Binding Thumbnail}" Margin="5"
+                                       Visibility="{Binding Thumbnail, Converter={StaticResource VisibilityConverter}}" />
+                            </Grid>
+                        </Button>
+
+                    </Grid>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="2">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  Style="{StaticResource SubtitleStyle}" Margin="4">CHOOSE TAGS:</TextBlock>
+                        
+                        <uc:Validator validators:ValidatorService.RegisterValidator="tags" 
+                            ToolTipService.ToolTip="Please select at least two tags"
+                            Width="20" Height="20"/>
+                    </StackPanel>
+
+                    <ListBox ItemsSource="{Binding Tags}" Height="286" Margin="4" x:Name="lbTags"
+                               validators:ValidatorService.Validator="tags" 
+                                validators:ValidatorService.ValidatorType="Custom" 
+                             >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" >
+                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding Checked, Mode=TwoWay}"></CheckBox>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,5,5">
+                <Button Margin="4" Height="35" Width="100" Click="Button_Click">Cancel</Button>
+                <Button Margin="4" Height="35" Width="100" Click="Button_Click_1">Submit</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+    
+</controls:ChildWindow>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1fe04b21-6d61-43e5-833c-03122fcfac59" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1822/Services/TrackCentral.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TrackCentral.xsd" MetadataType="Schema" ID="1c421faf-adfd-4066-b7e0-96c54fad9252" SourceId="1" SourceUrl="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd4" />
+    <MetadataFile FileName="TrackCentral.wsdl" MetadataType="Wsdl" ID="85a59386-89d9-4c19-9feb-ca1bb3ad62d7" SourceId="1" SourceUrl="http://localhost:1822/Services/TrackCentral.svc?wsdl" />
+    <MetadataFile FileName="TrackCentral1.xsd" MetadataType="Schema" ID="5787b4e5-033c-45c4-8d63-8f84e13cc2c3" SourceId="1" SourceUrl="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd1" />
+    <MetadataFile FileName="TrackCentral2.xsd" MetadataType="Schema" ID="a7cdcc61-d29a-441d-a610-4572205c0034" SourceId="1" SourceUrl="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd3" />
+    <MetadataFile FileName="TrackCentral.disco" MetadataType="Disco" ID="44855307-e329-4aee-a632-ae9bccd1c3de" SourceId="1" SourceUrl="http://localhost:1822/Services/TrackCentral.svc?disco" />
+    <MetadataFile FileName="TrackCentral3.xsd" MetadataType="Schema" ID="62a3b464-885b-443c-b3b6-22f765120598" SourceId="1" SourceUrl="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd0" />
+    <MetadataFile FileName="TrackCentral1.wsdl" MetadataType="Wsdl" ID="df3000f2-6337-476b-be7a-22fc4e65ee44" SourceId="1" SourceUrl="http://localhost:1822/Services/TrackCentral.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="TrackCentral4.xsd" MetadataType="Schema" ID="01ffeaa7-db71-4533-83bb-583fd9993d56" SourceId="1" SourceUrl="http://localhost:1822/Services/TrackCentral.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
